@@ -10,7 +10,7 @@ export default function SearchPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // Предотвращаем ошибку на сервере
+    if (typeof window === "undefined") return;
     const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
 
@@ -24,30 +24,29 @@ export default function SearchPage() {
       if (parsedUser && parsedUser.email) {
         setUser(parsedUser);
       } else {
-        localStorage.removeItem("user"); // Удаляем некорректные данные
+        localStorage.removeItem("user");
         router.push("/login");
       }
     } catch (error) {
       console.error("Error parsing user data:", error);
-      localStorage.removeItem("user"); // Удаляем поврежденные данные
+      localStorage.removeItem("user");
       router.push("/login");
     }
   }, [router]);
 
   const fetchImages = async (query) => {
     try {
-      const response = await axios.get("https://api.unsplash.com/search/photos", {
-        params: { query, per_page: 12 },
-        headers: {
-          Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY || ""}`,
-          "Accept-Version": "v1",
-        },
-      });
-      setImages(response.data.results);
+        console.log("📡 Отправляем запрос на сервер:", `/api/search?query=${query}`);
+        
+        const response = await axios.get(`/api/search`, { params: { query } });
+
+        console.log("✅ Получены данные:", response.data);
+        
+        setImages(response.data.results);
     } catch (error) {
-      console.error("Error fetching images:", error);
+        console.error("❌ Ошибка при получении изображений:", error);
     }
-  };
+};
 
   return (
     <div className="container">

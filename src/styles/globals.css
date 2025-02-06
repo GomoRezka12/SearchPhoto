@@ -61,3 +61,48 @@ body {
   border: 1px solid red;
   border-radius: 5px;
 }
+
+/* Хедер на всю ширину */
+.header {
+  width: 100%;
+  height: 150px;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Контент в хедере ограничен 1440px */
+.header {
+  width: 100%;
+  background-color: white;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header-content {
+  width: 1440px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+/* Линки */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #C76904;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+

@@ -11,16 +11,23 @@ export default function Navbar() {
   }, [router.pathname]); // Обновляем при каждом изменении маршрута
 
   return (
-    <nav className="navbar">
-      {user ? (
-        <>
-          <Link href="/search">Search</Link> | <Link href="/profile">Profile</Link>
-        </>
-      ) : (
-        <>
-          <Link href="/register">Register</Link> | <Link href="/login">Login</Link>
-        </>
-      )}
-    </nav>
+    <header className="header">
+      <div className="header-content">
+        <h1 className="logo">Image Search</h1>
+        <nav className="nav-links">
+          {user ? (
+            <>
+              <Link href="/search">Поиск</Link>
+              <Link href="/profile">Профиль</Link>
+            </>
+          ) : (
+            <>
+              <Link href="/register">Регистрация</Link>
+              <Link href="/login">Логин</Link>
+            </>
+          )}
+        </nav>
+      </div>
+    </header>
   );
 }
